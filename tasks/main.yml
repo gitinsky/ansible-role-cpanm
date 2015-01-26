@@ -1,0 +1,7 @@
+---
+- name: install tar
+  yum: name=tar state=present
+
+- name: install cpanm
+  command: bash -c "wget -O - http://cpanmin.us | perl - --self-upgrade" creates=/usr/local/bin/cpanm
+  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version == '6'
